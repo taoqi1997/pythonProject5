@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告</title>
+
+       <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src=" https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.1.2/echarts.min.js"></script>
+    <!--    页面样式-->
+    <style type="text/css">
+        /*标题样式*/
+        .title {
+            width: auto;
+            height: 60px;
+            text-align: center;
+            font: bolder 38px/60px "Microsoft YaHei UI";
+        }
+
+        /*汇总信息样式*/
+        .summary {
+            width: 90%;
+            position: absolute;
+            top: 120px;
+            margin-left: 5%;
+
+        }
+
+        .text-left {
+            font: bolder 20px/30px "Microsoft YaHei UI";
+        }
+
+        .left {
+            width: 50%;
+            float: left;
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+
+        }
+
+        .desc {
+            float: left;
+            width: 100%;
+        }
+
+        .list-group-item span {
+            font: normal 16px/38px "Microsoft YaHei UI";
+            padding: 30px;
+
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .4rem 1.25rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        /* 执行信息样式   */
+        .test_info {
+            width: 90%;
+            position: absolute;
+            top: 900px;
+            margin-left: 5%;
+
+            color: #28a745 !important;
+        }
+
+        .table td, th {
+            border: solid 2px rgba(9, 122, 51, 0.11) !important;
+            padding: 0;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+
+        select {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 2em;
+            width: 8em;
+            margin-left: 2em;
+        }
+
+        option {
+            text-align: center;
+            height: 36px;
+            font: none 18px/36px "Microsoft YaHei UI";
+            color: #28a745 !important;
+        }
+
+        .test_log {
+            background: rgba(163, 171, 189, 0.15);
+            width: 100%;
+            height: 50px;
+            border-top: none;
+            border-bottom: none;
+            display: none;
+            text-align: left;
+        }
+
+        .test_log td {
+            text-align: left;
+            height: 30px;
+            margin: 0;
+            padding-left: 3em;
+            padding-right:3em;
+            font: none 18px/24px "Microsoft YaHei UI";
+            color: #9e141a;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            line-height: 22px;
+            font-size: 14px
+        }
+
+        /*    测试图表显示*/
+        .char {
+            width: 90%;
+            position: absolute;
+            top: 450px;
+            margin-left: 5%;
+            color: #28a745 !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--报告标题-->
+<div class="title text-success">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">接口测试报告</div>
+</div>
+
+<!--汇总信息-->
+<div class="summary">
+    <p class="text-left text-success">测试结果汇总</p>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">测试人员</button>
+                <span class="text-dark">taoqi</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">开始时间</button>
+                <span class="text-dark">2022-08-23 15:51:50</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">执行时间</button>
+                <span class="text-dark">1.76 S</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">用例总数</button>
+                <span class="text-dark">14</span>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">成功用例</button>
+                <span class="text-success">8</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-warning">失败用例</button>
+                <span class="text-warning">6</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-danger">错误用例</button>
+                <span class="text-danger">0</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <span class="text-secondary">0</span>
+            </li>
+        </ul>
+    </div>
+    <div class="desc">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">描述信息</button>
+                <span class="text-secondary">XX项目测试生成的报告</span>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--测试图表-->
+<div class="char">
+    <p class="text-left text-success">图表展示</p>
+    <div id="char2" style="width: 49%;height: 400px;float: left"></div>
+    <div id="char" style="width: 49%;height: 400px ;float: left"></div>
+</div>
+
+<!--详细信息-->
+<div class="test_info">
+
+    <p class="text-left text-success">详细信息</p>
+    <div class="table_data">
+
+        <table class="table">
+            <thead class="bg-success text-light">
+            <tr>
+                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 20%;padding: 0">
+                    <span>测试类</span>
+                    <select id="testClass">
+                        <option>所有</option>
+                        
+                            <option>Handle_test</option>
+                        
+                            <option>Test_create</option>
+                        
+                    </select>
+
+                </th>
+
+                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 20%;padding: 0">用例描述</th>
+                <th scope="col" style="width: 15%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 20%;padding: 0">
+
+                    <span>执行结果</span>
+                    <select id="testResult">
+                        <option>所有</option>
+                        <option class="text-success">成功</option>
+                        <option class="text-warning">失败</option>
+                        <option class="text-danger">错误</option>
+                        <option class="text-info">跳过</option>
+                    </select>
+
+                </th>
+                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td class="Test_create">Test_create</td>
+                    <td>test_creat_001</td>
+                    <td>标签名为空</td>
+                    <td>0.113s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'name': '1642'}
+{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048716-11e42ebe-13b3664f'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'name': '1642'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048716-11e42ebe-13b3664f'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 60, in test_creat
+    my_log.error("用例-----{}-----执行失败".format(item["title"]))
+Message: '用例-----标签名为空-----执行失败'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'name': '1642'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048716-11e42ebe-13b3664f'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 61, in test_creat
+    my_log.exception(e)
+Message: AssertionError("{'name': '1642'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048716-11e42ebe-13b3664f'}里面")
+Arguments: ()
+test_creat_001 (test_create.Test_create.test_creat_001)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 57, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 62, in test_creat
+    raise e
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'name': '1642'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048716-11e42ebe-13b3664f'}里面
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="Test_create">Test_create</td>
+                    <td>test_creat_002</td>
+                    <td>标签名为18为数字</td>
+                    <td>0.121s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'name': '1604'}
+{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-26dc5824-0f8a3917'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'name': '1604'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-26dc5824-0f8a3917'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 60, in test_creat
+    my_log.error("用例-----{}-----执行失败".format(item["title"]))
+Message: '用例-----标签名为18为数字-----执行失败'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'name': '1604'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-26dc5824-0f8a3917'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 61, in test_creat
+    my_log.exception(e)
+Message: AssertionError("{'name': '1604'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-26dc5824-0f8a3917'}里面")
+Arguments: ()
+test_creat_002 (test_create.Test_create.test_creat_002)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 57, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 62, in test_creat
+    raise e
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'name': '1604'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-26dc5824-0f8a3917'}里面
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="Test_create">Test_create</td>
+                    <td>test_creat_003</td>
+                    <td>标签名为31为数字</td>
+                    <td>0.143s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 45158}
+{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-398c6589-4b202693'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 45158}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-398c6589-4b202693'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 60, in test_creat
+    my_log.error("用例-----{}-----执行失败".format(item["title"]))
+Message: '用例-----标签名为31为数字-----执行失败'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 45158}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-398c6589-4b202693'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 61, in test_creat
+    my_log.exception(e)
+Message: AssertionError("{'errcode': 45158}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-398c6589-4b202693'}里面")
+Arguments: ()
+test_creat_003 (test_create.Test_create.test_creat_003)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 57, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 62, in test_creat
+    raise e
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'errcode': 45158}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-398c6589-4b202693'}里面
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="Test_create">Test_create</td>
+                    <td>test_creat_004</td>
+                    <td>标签名为10位字母</td>
+                    <td>0.114s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 45056}
+{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-0bef0456-64da9275'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 45056}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-0bef0456-64da9275'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 60, in test_creat
+    my_log.error("用例-----{}-----执行失败".format(item["title"]))
+Message: '用例-----标签名为10位字母-----执行失败'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 45056}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-0bef0456-64da9275'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 61, in test_creat
+    my_log.exception(e)
+Message: AssertionError("{'errcode': 45056}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-0bef0456-64da9275'}里面")
+Arguments: ()
+test_creat_004 (test_create.Test_create.test_creat_004)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 57, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 62, in test_creat
+    raise e
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'errcode': 45056}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-0bef0456-64da9275'}里面
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="Test_create">Test_create</td>
+                    <td>test_creat_005</td>
+                    <td>标签名为特殊字符</td>
+                    <td>0.11s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'tag': {'name': '1696'}}
+{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-43fb1d20-7d2a28d3'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'tag': {'name': '1696'}}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-43fb1d20-7d2a28d3'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 60, in test_creat
+    my_log.error("用例-----{}-----执行失败".format(item["title"]))
+Message: '用例-----标签名为特殊字符-----执行失败'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'tag': {'name': '1696'}}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-43fb1d20-7d2a28d3'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 61, in test_creat
+    my_log.exception(e)
+Message: AssertionError("{'tag': {'name': '1696'}}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-43fb1d20-7d2a28d3'}里面")
+Arguments: ()
+test_creat_005 (test_create.Test_create.test_creat_005)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 57, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 62, in test_creat
+    raise e
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'tag': {'name': '1696'}}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-43fb1d20-7d2a28d3'}里面
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="Test_create">Test_create</td>
+                    <td>test_creat_006</td>
+                    <td>标签名为汉字</td>
+                    <td>0.137s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 47001}
+{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-2b09dc8b-179edfcf'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 47001}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-2b09dc8b-179edfcf'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 60, in test_creat
+    my_log.error("用例-----{}-----执行失败".format(item["title"]))
+Message: '用例-----标签名为汉字-----执行失败'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 47001}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-2b09dc8b-179edfcf'}里面
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 61, in test_creat
+    my_log.exception(e)
+Message: AssertionError("{'errcode': 47001}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-2b09dc8b-179edfcf'}里面")
+Arguments: ()
+test_creat_006 (test_create.Test_create.test_creat_006)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 57, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+       ^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 62, in test_creat
+    raise e
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+</pre>
+                        
+
+                            <pre>  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+</pre>
+                        
+
+                            <pre>AssertionError: {'errcode': 47001}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63048717-2b09dc8b-179edfcf'}里面
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_001</td>
+                    <td>grant_type为空</td>
+                    <td>0.104s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 40002}
+{'errcode': 40002, 'errmsg': 'invalid grant_type rid: 63048717-57247e81-183fd1a8'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---grant_type为空---执行通过'
+Arguments: ()
+test_token_001 (test_token.Handle_test.test_token_001)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_002</td>
+                    <td>appid为空</td>
+                    <td>0.0751s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 41002}
+{'errcode': 41002, 'errmsg': 'appid missing rid: 63048717-52b266e6-48668c20'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---appid为空---执行通过'
+Arguments: ()
+test_token_002 (test_token.Handle_test.test_token_002)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_003</td>
+                    <td>secret为空</td>
+                    <td>0.114s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 41004}
+{'errcode': 41004, 'errmsg': 'appsecret missing rid: 63048717-6c58c6fa-3efb4722'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---secret为空---执行通过'
+Arguments: ()
+test_token_003 (test_token.Handle_test.test_token_003)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_004</td>
+                    <td>正常获取</td>
+                    <td>0.169s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'expires_in': 7200}
+{'access_token': '60_RYwNN3-1gVuvOWcZAu5muk0dMw15PuLyH_ufa0GmvbrCQQCpCllzugfsk6m9g6GNlXg89DPw1w_hh_x27r-LxbVCsRWfNUCMdwqeB1FjP1NzwJO3jMfwn4X1I5L1kVIgfdXM3ooWvbtj7nCXZKLfAFAHST', 'expires_in': 7200}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---正常获取---执行通过'
+Arguments: ()
+test_token_004 (test_token.Handle_test.test_token_004)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_005</td>
+                    <td>appid参数错误</td>
+                    <td>0.0946s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 40013}
+{'errcode': 40013, 'errmsg': 'invalid appid rid: 63048718-3923003d-6c902146'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---appid参数错误---执行通过'
+Arguments: ()
+test_token_005 (test_token.Handle_test.test_token_005)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_006</td>
+                    <td>secret参数错误</td>
+                    <td>0.0981s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 40125}
+{'errcode': 40125, 'errmsg': 'invalid appsecret rid: 63048718-12e88e6d-0df351af'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---secret参数错误---执行通过'
+Arguments: ()
+test_token_006 (test_token.Handle_test.test_token_006)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_007</td>
+                    <td>appid 和secret不传</td>
+                    <td>0.0815s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 41002}
+{'errcode': 41002, 'errmsg': 'appid missing rid: 63048718-6bad22c5-3518e2ef'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---appid 和secret不传---执行通过'
+Arguments: ()
+test_token_007 (test_token.Handle_test.test_token_007)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td class="Handle_test">Handle_test</td>
+                    <td>test_token_008</td>
+                    <td>grant_type参数错误</td>
+                    <td>0.107s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>{'errcode': 40002}
+{'errcode': 40002, 'errmsg': 'invalid grant_type rid: 63048718-5f8d75c1-5625513d'}
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/logging/__init__.py", line 1113, in emit
+    stream.write(msg + self.terminator)
+    ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'write'
+Call stack:
+  File "/Users/taoqi/888/pythonProject5/run.py", line 7, in <module>
+    runner.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/testRunner.py", line 174, in run
+    self.suite.run(res)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/suite.py", line 122, in run
+    test(result)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 678, in __call__
+    return self.run(*args, **kwds)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 623, in run
+    self._callTestMethod(testMethod)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/case.py", line 579, in _callTestMethod
+    if method() is not None:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/unittestreport/core/dataDriver.py", line 18, in wrapper
+    return func(self, params, *args, **kwargs)
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 37, in test_token
+    my_log.info("用例---{}---执行通过".format(item["title"]))
+Message: '用例---grant_type参数错误---执行通过'
+Arguments: ()
+test_token_008 (test_token.Handle_test.test_token_008)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 200px"></div>
+</div>
+
+
+<script>
+    var tbodyTr = $('tbody tr');
+    var testResult = $("#testResult");
+    var testClass = $("#testClass");
+    <!--    用例执行详细信息显示切换-->
+    $(".btn_info").click(function () {
+        $(this).parent().parent().next().toggle();
+
+    });
+    // 当选择用例类之后触发
+    testClass.change(function () {
+        var cls = $(this).val();
+        var res = testResult.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+    testResult.change(function () {
+        var res = $(this).val();
+        var cls = testClass.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+
+    function elementDisplay(cls, res) {
+        // 用例数据的显示
+        if (cls === "所有") {
+            if (res === "所有") {
+                tbodyTr.has('button').show();
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-success').show()
+
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-warning').show()
+
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-danger').show()
+
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-info').show()
+            }
+        } else {
+            if (res === "所有") {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').show()
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
+            }
+        }
+    }
+
+    function sort() {
+        //重新排列显示序号
+        // 选择所有可以见的tr
+        var visibleTr = tbodyTr.filter(":visible");
+
+        visibleTr.each(function (index, element) {
+            element.firstElementChild.innerHTML = index + 1;
+
+        })
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('char'));
+    var myChart2 = echarts.init(document.getElementById('char2'));
+    // 指定图表的配置项和数据
+    option = {
+        color: ['#00a10a', '#ddb518', 'rgba(204,46,41,0.73)', '#85898c'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['通过', '失败', '错误', '跳过']
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 8, name: '通过'},
+                    {value: 6, name: '失败'},
+                    {value: 0, name: '错误'},
+                    {value: 0, name: '跳过'}
+                ]
+            }
+        ]
+    };
+    option2 = {
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'gauge',
+                detail: {formatter: '57.14%'},
+                data: [{value: '57.14', name: '用例通过率'}],
+                axisLine: {
+                    lineStyle: {
+                        color: [
+                            [0.2, '#c20000'],
+                            [0.8, '#ddb518'],
+                            [1, '#00a10a']]
+                    }
+                }
+            }
+        ]
+    };
+
+
+    myChart2.setOption(option2);
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>
