@@ -1,3 +1,7 @@
+import sys
+
+sys.path.append("..")
+
 import unittest
 from unittestreport import TestRunner
 from common.Handle_path import TEST_CASE
