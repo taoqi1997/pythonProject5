@@ -273,3 +273,66 @@ AssertionError: {'errcode': 47001}不在{'errcode': 45009, 'errmsg': 'reach max 
 2022-08-23 15:51:52,238-test_token.py-37--INFO-用例---secret参数错误---执行通过
 2022-08-23 15:51:52,320-test_token.py-37--INFO-用例---appid 和secret不传---执行通过
 2022-08-23 15:51:52,427-test_token.py-37--INFO-用例---grant_type参数错误---执行通过
+2022-08-23 17:16:36,694-test_create.py-60--ERROR-用例-----标签名为空-----执行失败
+2022-08-23 17:16:36,716-test_create.py-61--ERROR-{'name': '1902'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af4-0156bb46-1776246d'}里面
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'name': '1902'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af4-0156bb46-1776246d'}里面
+2022-08-23 17:16:36,878-test_create.py-60--ERROR-用例-----标签名为18为数字-----执行失败
+2022-08-23 17:16:36,880-test_create.py-61--ERROR-{'name': '1697'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af4-5d996db3-75ee3a72'}里面
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'name': '1697'}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af4-5d996db3-75ee3a72'}里面
+2022-08-23 17:16:37,035-test_create.py-60--ERROR-用例-----标签名为31为数字-----执行失败
+2022-08-23 17:16:37,039-test_create.py-61--ERROR-{'errcode': 45158}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-20c23c09-60056b70'}里面
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 45158}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-20c23c09-60056b70'}里面
+2022-08-23 17:16:37,201-test_create.py-60--ERROR-用例-----标签名为10位字母-----执行失败
+2022-08-23 17:16:37,203-test_create.py-61--ERROR-{'errcode': 45056}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-196bd29f-4562507f'}里面
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 45056}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-196bd29f-4562507f'}里面
+2022-08-23 17:16:37,342-test_create.py-60--ERROR-用例-----标签名为特殊字符-----执行失败
+2022-08-23 17:16:37,344-test_create.py-61--ERROR-{'tag': {'name': '1616'}}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-2650ca92-529363c3'}里面
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'tag': {'name': '1616'}}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-2650ca92-529363c3'}里面
+2022-08-23 17:16:37,521-test_create.py-60--ERROR-用例-----标签名为汉字-----执行失败
+2022-08-23 17:16:37,522-test_create.py-61--ERROR-{'errcode': 47001}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-620db2ba-5b27c06b'}里面
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_create.py", line 58, in test_creat
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'errcode': 47001}不在{'errcode': 45009, 'errmsg': 'reach max api daily quota limit rid: 63049af5-620db2ba-5b27c06b'}里面
+2022-08-23 17:16:37,629-test_token.py-37--INFO-用例---grant_type为空---执行通过
+2022-08-23 17:16:37,745-test_token.py-37--INFO-用例---appid为空---执行通过
+2022-08-23 17:16:37,924-test_token.py-37--INFO-用例---secret为空---执行通过
+2022-08-23 17:16:38,114-test_token.py-33--ERROR-用例---正常获取---执行未通过
+2022-08-23 17:16:38,115-test_token.py-34--ERROR-{'expires_in': 7200}不在{'access_token': '60_GvjV_xX_egu_ygCkw2eBv2z3t-K_Q8NJnNH36ngrWEzd-adIDHGKY6Xw-HA6CdpmLKzV8m8ES1YolXEqWp7A-b5VFmUw6j4joSYHu-Jjps-Fxam_Zc05uToPPEzLHfx5wvqlxTwHCKB6A8iqZQLcAEAULG', 'expires_in': 7198}里面
+Traceback (most recent call last):
+  File "/Users/taoqi/888/pythonProject5/test_case/test_token.py", line 30, in test_token
+    dict_assert(expect=expect,res=res)
+  File "/Users/taoqi/888/pythonProject5/test_case/dict_assert.py", line 9, in dict_assert
+    raise AssertionError("{}不在{}里面".format(expect,res))
+AssertionError: {'expires_in': 7200}不在{'access_token': '60_GvjV_xX_egu_ygCkw2eBv2z3t-K_Q8NJnNH36ngrWEzd-adIDHGKY6Xw-HA6CdpmLKzV8m8ES1YolXEqWp7A-b5VFmUw6j4joSYHu-Jjps-Fxam_Zc05uToPPEzLHfx5wvqlxTwHCKB6A8iqZQLcAEAULG', 'expires_in': 7198}里面
+2022-08-23 17:16:38,236-test_token.py-37--INFO-用例---appid参数错误---执行通过
+2022-08-23 17:16:38,389-test_token.py-37--INFO-用例---secret参数错误---执行通过
+2022-08-23 17:16:38,478-test_token.py-37--INFO-用例---appid 和secret不传---执行通过
+2022-08-23 17:16:38,622-test_token.py-37--INFO-用例---grant_type参数错误---执行通过
